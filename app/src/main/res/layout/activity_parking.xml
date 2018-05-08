@@ -41,44 +41,44 @@
         app:srcCompat="@drawable/distanceback" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/buttonUpPark"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
         android:layout_marginStart="21dp"
-        android:text="Button"
-        app:layout_constraintBottom_toTopOf="@+id/button2"
-        app:layout_constraintStart_toEndOf="@+id/button4" />
+        android:text="Up"
+        app:layout_constraintBottom_toTopOf="@+id/buttonDownPark"
+        app:layout_constraintStart_toEndOf="@+id/buttonLeftPark" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/buttonDownPark"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="34dp"
         android:layout_marginStart="21dp"
-        android:text="Button"
+        android:text="Down"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/button4" />
+        app:layout_constraintStart_toEndOf="@+id/buttonLeftPark" />
 
     <Button
-        android:id="@+id/button3"
+        android:id="@+id/buttonRightPark"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="64dp"
         android:layout_marginEnd="35dp"
         android:layout_marginStart="25dp"
-        android:text="Button"
+        android:text="Right"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/button" />
+        app:layout_constraintStart_toEndOf="@+id/buttonUpPark" />
 
     <Button
-        android:id="@+id/button4"
+        android:id="@+id/buttonLeftPark"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="64dp"
         android:layout_marginStart="39dp"
-        android:text="Button"
+        android:text="Left"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 

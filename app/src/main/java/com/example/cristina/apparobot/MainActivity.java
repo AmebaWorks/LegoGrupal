@@ -31,10 +31,10 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Button up = (Button) findViewById(R.id.buttonUp);
-        Button down = (Button) findViewById(R.id.buttonDown);
+        Button up = (Button) findViewById(R.id.buttonUpPark);
+        Button down = (Button) findViewById(R.id.buttonDownPark);
         Button right = (Button) findViewById(R.id.buttonRight);
-        Button left = (Button) findViewById(R.id.buttonLeft);
+        Button left = (Button) findViewById(R.id.buttonLeftPark);
         Button increaseVolume = (Button) findViewById(R.id.buttonMasVol);
         Button decreaseVolume = (Button) findViewById(R.id.buttonMenosVol);
         Button exit = (Button) findViewById(R.id.buttonExit);
