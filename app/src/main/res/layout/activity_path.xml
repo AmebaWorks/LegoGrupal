@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.cristina.apparobot.Path">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:paddingHorizontal="10dp"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="16dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:orientation="horizontal"
+            android:paddingHorizontal="10dp"
+            android:paddingVertical="10dp">
+
+            <TextView
+                android:id="@+id/textD1"
+                android:layout_width="82dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="10"
+                android:paddingHorizontal="10dp"
+                android:text="Direction" />
+
+            <TextView
+                android:id="@+id/Direction1"
+                android:layout_width="80dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="10"
+                android:paddingHorizontal="10dp"
+                android:text="choise" />
+
+            <EditText
+                android:id="@+id/seg1"
+                android:layout_width="75dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.5"
+                android:ems="10"
+                android:inputType="phone"
+                android:paddingHorizontal="10dp" />
+
+            <TextView
+                android:id="@+id/txtsg1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="10"
+                android:paddingHorizontal="10dp"
+                android:text="sg." />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:orientation="horizontal"
+            android:paddingHorizontal="10dp"
+            android:paddingVertical="10dp">
+
+            <TextView
+                android:id="@+id/textD2"
+                android:layout_width="82dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="10"
+                android:paddingHorizontal="10dp"
+                android:text="Direction" />
+
+            <TextView
+                android:id="@+id/Direction2"
+                android:layout_width="80dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="10"
+                android:paddingHorizontal="10dp"
+                android:text="choise" />
+
+            <EditText
+                android:id="@+id/seg2"
+                android:layout_width="75dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.5"
+                android:ems="10"
+                android:inputType="phone"
+                android:paddingHorizontal="10dp" />
+
+            <TextView
+                android:id="@+id/txtsg2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="10"
+                android:paddingHorizontal="10dp"
+                android:text="sg." />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:orientation="horizontal"
+            android:paddingHorizontal="10dp"
+            android:paddingVertical="10dp">
+
+            <TextView
+                android:id="@+id/textD3"
+                android:layout_width="82dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="10"
+                android:paddingHorizontal="10dp"
+                android:text="Direction" />
+
+            <TextView
+                android:id="@+id/Direction3"
+                android:layout_width="80dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="10"
+                android:paddingHorizontal="10dp"
+                android:text="choise" />
+
+            <EditText
+                android:id="@+id/seg3"
+                android:layout_width="75dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.5"
+                android:ems="10"
+                android:inputType="phone"
+                android:paddingHorizontal="10dp" />
+
+            <TextView
+                android:id="@+id/txtsg3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="10"
+                android:paddingHorizontal="10dp"
+                android:text="sg." />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:orientation="horizontal"
+            android:paddingHorizontal="10dp"
+            android:paddingVertical="10dp">
+
+            <TextView
+                android:id="@+id/textD4"
+                android:layout_width="82dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="10"
+                android:paddingHorizontal="10dp"
+                android:text="Direction" />
+
+            <TextView
+                android:id="@+id/Direction4"
+                android:layout_width="80dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="10"
+                android:paddingHorizontal="10dp"
+                android:text="choise" />
+
+            <EditText
+                android:id="@+id/seg4"
+                android:layout_width="75dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.5"
+                android:ems="10"
+                android:inputType="phone"
+                android:paddingHorizontal="10dp" />
+
+            <TextView
+                android:id="@+id/txtsg4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="10"
+                android:paddingHorizontal="10dp"
+                android:text="sg." />
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/ButtonRun"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:paddingHorizontal="10dp"
+            android:paddingVertical="10dp"
+            android:text="RUN" />
+
+    </LinearLayout>
+</android.support.v7.widget.LinearLayoutCompat>
