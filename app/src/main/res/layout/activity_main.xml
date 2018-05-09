@@ -7,7 +7,7 @@
     tools:context="com.example.cristina.apparobot.MainActivity">
 
     <Button
-        android:id="@+id/buttonUpPark"
+        android:id="@+id/buttonUp"
         android:layout_width="133dp"
         android:layout_height="67dp"
         android:layout_marginEnd="124dp"
@@ -17,14 +17,14 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/buttonDownPark"
+        android:id="@+id/buttonDown"
         android:layout_width="135dp"
         android:layout_height="71dp"
         android:layout_marginEnd="124dp"
-        android:layout_marginTop="170dp"
+        android:layout_marginTop="315dp"
         android:text="DOWN"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonUpPark" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/buttonRight"
@@ -37,7 +37,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/buttonLeftPark"
+        android:id="@+id/buttonLeft"
         android:layout_width="136dp"
         android:layout_height="69dp"
         android:layout_marginStart="40dp"

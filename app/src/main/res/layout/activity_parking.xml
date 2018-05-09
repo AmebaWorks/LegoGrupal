@@ -46,9 +46,11 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
         android:layout_marginStart="21dp"
+        android:layout_marginTop="15dp"
         android:text="Up"
         app:layout_constraintBottom_toTopOf="@+id/buttonDownPark"
-        app:layout_constraintStart_toEndOf="@+id/buttonLeftPark" />
+        app:layout_constraintStart_toEndOf="@+id/buttonLeftPark"
+        app:layout_constraintTop_toBottomOf="@+id/imageView4" />
 
     <Button
         android:id="@+id/buttonDownPark"
@@ -83,7 +85,7 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
-        android:id="@+id/buttonBack"
+        android:id="@+id/buttonBackPark"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="3dp"
