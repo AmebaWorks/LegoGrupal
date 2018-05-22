@@ -1,5 +1,6 @@
 package com.example.cristina.apparobot;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.bluetooth.BluetoothAdapter;
@@ -9,6 +10,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.Editable;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -16,10 +18,9 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -29,8 +30,12 @@ import java.util.UUID;
 public class MainActivity extends AppCompatActivity {
 
     static final int REQUEST_ENABLE_BT = 1;
-    BufferedWriter outBT;
     static final int TAKE_A_RESULT = 2;
+
+    BufferedWriter outBT;
+    InputStreamReader inBT;
+
+    //path
     String path;
     Button up;
     Button down;
@@ -41,6 +46,9 @@ public class MainActivity extends AppCompatActivity {
     Button exit;
     Button pause;
 
+    //parking
+    ImageView delantera;
+    ImageView trasera;
     Button upPark ;
     Button downPark ;
     Button rightPark ;
@@ -48,6 +56,7 @@ public class MainActivity extends AppCompatActivity {
     Button backPark ;
     Button pausePark ;
 
+    //main
     TextView direction1;
     TextView direction2;
     TextView direction3;
@@ -57,62 +66,13 @@ public class MainActivity extends AppCompatActivity {
     EditText seg3;
     EditText seg4;
     Button run;
+    Asynctask at;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         main();
         bluetoothConection();
-    }
-
-    public void up()
-    {
-        try {
-            outBT.write("Up\r\n");
-            outBT.flush();
-            Log.i("he enviado el exiiiit", "exiiit");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public void down(){
-        try {
-            outBT.write("Down\r\n");
-            outBT.flush();
-            Log.i("he enviado el dowwwwn","down");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public void right(){
-        try {
-            outBT.write("Right\r\n");
-            outBT.flush();
-            Log.i("he enviado el riiihgt","right");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public void left(){
-        try {
-            outBT.write("Left\r\n");
-            outBT.flush();
-            Log.i("he enviado el leeeeft","Leeft");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public void pause(){
-        try {
-            outBT.write("Pause\r\n");
-            outBT.flush();
-            Log.i("he enviado el exiiiit","pausaaa");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
     }
 
     public void main(){
@@ -158,7 +118,6 @@ public class MainActivity extends AppCompatActivity {
                 try {
                     outBT.write("DecreaseVolume\r\n");
                     outBT.flush();
-                    Log.i("he enviado el exiiiit","bajo volll");
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -170,7 +129,6 @@ public class MainActivity extends AppCompatActivity {
                 try {
                     outBT.write("IncreaseVolume\r\n");
                     outBT.flush();
-                    Log.i("he enviado el exiiiit","subo voll");
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -182,10 +140,10 @@ public class MainActivity extends AppCompatActivity {
                 try {
                     outBT.write("Exit\r\n");
                     outBT.flush();
-                    Log.i("he enviado el exiiiit","exit");
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
+                finish();
             }
         });
         pause.setOnClickListener(new View.OnClickListener() {
@@ -197,22 +155,62 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    public void up(){
+        try {
+            outBT.write("Up\r\n");
+            outBT.flush();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void down(){
+        try {
+            outBT.write("Down\r\n");
+            outBT.flush();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void right(){
+        try {
+            outBT.write("Right\r\n");
+            outBT.flush();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void left(){
+        try {
+            outBT.write("Left\r\n");
+            outBT.flush();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void pause(){
+        try {
+            outBT.write("Pause\r\n");
+            outBT.flush();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     public void parking(){
         setContentView(R.layout.activity_parking);
 
+        delantera = (ImageView) findViewById(R.id.imgDelantero);
+        trasera = (ImageView) findViewById(R.id.imgTrasero);
         upPark = (Button) findViewById(R.id.buttonUpPark);
         downPark = (Button) findViewById(R.id.buttonDownPark);
         rightPark = (Button) findViewById(R.id.buttonRightPark);
         leftPark = (Button) findViewById(R.id.buttonLeftPark);
         backPark = (Button) findViewById(R.id.buttonBackPark);
         pausePark = (Button) findViewById(R.id.buttonPausePark);
-
-        try {
-            outBT.write("Parking\r\n");
-            System.out.print("JAJA estoy en parking");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
 
         upPark.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -248,8 +246,14 @@ public class MainActivity extends AppCompatActivity {
         backPark.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Log.i("vuelvo atras","back");
                 pause();
+
+                try {
+                    outBT.write("Parking\r\n");
+                    outBT.flush();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
                 main();
             }
         });
@@ -273,64 +277,97 @@ public class MainActivity extends AppCompatActivity {
         direction1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showDialog();
+                showDialog(direction1);
             }
         });
 
         direction2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showDialog();
+                showDialog(direction2);
             }
         });
 
         direction3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showDialog();
+                showDialog(direction3);
             }
         });
 
         direction4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showDialog();
+                showDialog(direction4);
             }
         });
+
+
 
         run.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                if(seg1.getText().toString().equals(null) || seg1.getText().toString().equals("")
-                        || seg1.getText().toString().equals(null) || seg1.getText().toString().equals("")
-                        || seg2.getText().toString().equals(null) || seg2.getText().toString().equals("")
-                        || seg3.getText().toString().equals(null) || seg3.getText().toString().equals("")
-                        || direction1.getText().toString().equals(null) || direction1.getText().toString().equals("") || direction1.getText().toString().equals("choise")
-                        || direction2.getText().toString().equals(null) || direction2.getText().toString().equals("") || direction2.getText().toString().equals("choise")
-                        || direction3.getText().toString().equals(null) || direction3.getText().toString().equals("") || direction3.getText().toString().equals("choise")
-                        || direction4.getText().toString().equals(null) || direction4.getText().toString().equals("") || direction4.getText().toString().equals("choise"))
+                if(isNull(seg1) || isNull(seg2) || isNull(seg3) || isNull(seg4) || isNull(direction1) || isNull(direction2) || isNull(direction3) || isNull(direction4)
+                        || direction1.getText().toString().equals("CHOICE") || direction2.getText().toString().equals("CHOICE")
+                        || direction3.getText().toString().equals("CHOICE") || direction4.getText().toString().equals("CHOICE"))
                 {
-                    main();
                     Toast toast1 = Toast.makeText(getApplicationContext(),"Error, a cell has null", Toast.LENGTH_SHORT);
+                    toast1.show();
+                    main();
                 }
                 else
                 {
-                    //preguntar a Jaime
-                    path = direction1.getText().toString() +":"+ seg1.getText().toString() + ","+
-                            direction2.getText().toString() +":"+ seg2.getText().toString() + ","+
-                            direction3.getText().toString() +":"+ seg3.getText().toString() + ","+
-                            direction4.getText().toString() +":"+ seg4.getText().toString() + ".";
-                    Log.i("este es lo que envio", "c  "+path);
-                    pause();
-                   main();
+                    String [][]arrayOfPath;
+                    arrayOfPath = new String[4][2];
+                    arrayOfPath[0][0] = seg1.getText().toString();
+                    arrayOfPath[1][0] = seg2.getText().toString();
+                    arrayOfPath[2][0] = seg3.getText().toString();
+                    arrayOfPath[3][0] = seg4.getText().toString();
+                    arrayOfPath[0][1] = direction1.getText().toString();
+                    arrayOfPath[1][1] = direction2.getText().toString();
+                    arrayOfPath[2][1] = direction3.getText().toString();
+                    arrayOfPath[3][1] = direction4.getText().toString();
 
+                    int counter = 0;
+
+                    for(int i = 0; i < 4 ; i++)
+                    {
+                        counter = 0;
+                        try {
+                            outBT.write(arrayOfPath[i][1]+"\r\n");
+                            outBT.flush();
+                            Toast toast1 = Toast.makeText(getApplicationContext(),"He hecho el segundo outbt " +arrayOfPath[i+1][1], Toast.LENGTH_SHORT);
+                            toast1.show();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+
+                        while(counter < Integer.parseInt(arrayOfPath[i][0])*360)
+                        {
+                            counter++;
+                            Toast toast1 = Toast.makeText(getApplicationContext(),"oigan si estoy en el while"+counter, Toast.LENGTH_SHORT);
+                            toast1.show();
+                        }
+                    }
+//imagen
+                    pause();
+                    main();
                 }
-                finish();
             }
         });
     }
+    //MOVERLO A CLASE ESTATICA JUNTO CON SHOW DIALOG
+    public boolean isNull(TextView editable)
+    {
+        if(editable.getText() != null && !editable.getText().toString().equals(""))
+        {
+            return false;
+        }
+        return true;
+    }
 
+    @SuppressLint("StaticFieldLeak")
     public void bluetoothConection(){
         BluetoothAdapter mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
         if (mBluetoothAdapter != null) {
@@ -350,23 +387,47 @@ public class MainActivity extends AppCompatActivity {
             }
 
             //writer
-            InputStreamReader inBT;
             if(mmSocket != null) {
                 try {
                     outBT = new BufferedWriter(new OutputStreamWriter(mmSocket.getOutputStream()));
-                    String stri = "Hola Caracola";
-                    outBT.write("Hola\r\n");
-                    outBT.flush();
-                    Log.i("estoy escribiendo y escribo ","la srting hola");
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
+
                 try {
                     inBT = new InputStreamReader(mmSocket.getInputStream());
-                    BufferedReader read = new BufferedReader(inBT);
-                    String line;
-                    line = read.readLine();
-                    Log.i("esto es lop que recivo", " "+line);
+                    //initialize asynctask to be reading all time
+                    at = new Asynctask(inBT) {
+                        @Override
+                        protected void onProgressUpdate(String... values) {
+                            //update the images of parking
+                            if(values[0].equals("1"))
+                            {
+                                delantera.setImageResource(R.drawable.arriba1);
+                            }
+                            else if(values[0].equals("2"))
+                            {
+                                delantera.setImageResource(R.drawable.arriba2);
+                            }
+                            else if(values[0].equals("3"))
+                            {
+                                delantera.setImageResource(R.drawable.arriba3);
+                                pause();
+                            }
+                            else if(values[0].equals("4"))
+                            {
+                                trasera.setImageResource(R.drawable.abajo3);
+                                pause();
+                            }
+                            else
+                            {
+                                delantera.setImageResource(R.drawable.distance);
+                                trasera.setImageResource(R.drawable.distanceback);
+                            }
+                        }
+                    };
+                    at.execute();
+
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -389,8 +450,8 @@ public class MainActivity extends AppCompatActivity {
                 try {
                     outBT.write("Pause\r\n");
                     outBT.flush();
-                    /*outBT.write("Parking\r\n");
-                    outBT.flush();*/
+                    outBT.write("Parking\r\n");
+                    outBT.flush();
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -422,15 +483,14 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private void showDialog()
-    {
+    private void showDialog(final TextView txtV){
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setCancelable(true);
         final ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(MainActivity.this, android.R.layout.select_dialog_singlechoice);
-        arrayAdapter.add("UP");
-        arrayAdapter.add("DOWN");
-        arrayAdapter.add("RIGHT");
-        arrayAdapter.add("LEFT");
+        arrayAdapter.add("Up");
+        arrayAdapter.add("Down");
+        arrayAdapter.add("Right");
+        arrayAdapter.add("Left");
 
         builder.setNegativeButton("cancel", new DialogInterface.OnClickListener() {
             @Override
@@ -445,19 +505,19 @@ public class MainActivity extends AppCompatActivity {
                 String strName = arrayAdapter.getItem(which);
                 AlertDialog.Builder builderInner = new AlertDialog.Builder(MainActivity.this);
 
-                if(strName.equals("UP")){
-                    direction1.setText("UP");
+                if(strName.equals("Up")){
+                    txtV.setText("Up");
                 }
-                if(strName.equals("DOWN")){
-                    direction2.setText("DOWN");
-                }
-
-                if(strName.equals("RIGHT")){
-                    direction3.setText("RIGHT");
+                if(strName.equals("Down")){
+                    txtV.setText("Down");
                 }
 
-                if(strName.equals("LEFT")){
-                    direction4.setText("LEFT");
+                if(strName.equals("Right")){
+                    txtV.setText("Right");
+                }
+
+                if(strName.equals("Left")){
+                    txtV.setText("Left");
                 }
             }
         });

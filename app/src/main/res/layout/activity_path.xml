@@ -35,7 +35,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="10"
                 android:paddingHorizontal="10dp"
-                android:text="choise" />
+                android:text="CHOICE"
+                android:textColor="@color/colorAccent" />
 
             <EditText
                 android:id="@+id/seg1"
@@ -76,7 +77,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="10"
                 android:paddingHorizontal="10dp"
-                android:text="choise" />
+                android:text="CHOICE"
+                android:textColor="@color/colorAccent" />
 
             <EditText
                 android:id="@+id/seg2"
@@ -117,7 +119,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="10"
                 android:paddingHorizontal="10dp"
-                android:text="choise" />
+                android:text="CHOICE"
+                android:textColor="@color/colorAccent" />
 
             <EditText
                 android:id="@+id/seg3"
@@ -158,7 +161,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="10"
                 android:paddingHorizontal="10dp"
-                android:text="choise" />
+                android:text="CHOICE"
+                android:textColor="@color/colorAccent" />
 
             <EditText
                 android:id="@+id/seg4"

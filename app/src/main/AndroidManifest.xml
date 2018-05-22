@@ -21,9 +21,6 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".Path"
-            android:label="Path" />
-        <activity
             android:name=".Parking"
             android:label="Parking" />
     </application>
