@@ -8,6 +8,7 @@ import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothSocket;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.Debug;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Editable;
@@ -328,31 +329,21 @@ public class MainActivity extends AppCompatActivity {
                     arrayOfPath[1][1] = direction2.getText().toString();
                     arrayOfPath[2][1] = direction3.getText().toString();
                     arrayOfPath[3][1] = direction4.getText().toString();
-
-                    int counter = 0;
-
-                    for(int i = 0; i < 4 ; i++)
+                    @SuppressLint("StaticFieldLeak")
+                    AsynctaskPath startPath = new AsynctaskPath(arrayOfPath, outBT)
                     {
-                        counter = 0;
-                        try {
-                            outBT.write(arrayOfPath[i][1]+"\r\n");
-                            outBT.flush();
-                            Toast toast1 = Toast.makeText(getApplicationContext(),"He hecho el segundo outbt " +arrayOfPath[i+1][1], Toast.LENGTH_SHORT);
-                            toast1.show();
-                        } catch (IOException e) {
-                            e.printStackTrace();
+                        @Override
+                        protected void onPostExecute(Object array) {
+                            pause();
+                            main();
                         }
 
-                        while(counter < Integer.parseInt(arrayOfPath[i][0])*360)
-                        {
-                            counter++;
-                            Toast toast1 = Toast.makeText(getApplicationContext(),"oigan si estoy en el while"+counter, Toast.LENGTH_SHORT);
-                            toast1.show();
+                        @Override
+                        protected void onProgressUpdate(String... values) {
+                            //imagen
                         }
-                    }
-//imagen
-                    pause();
-                    main();
+                    };
+                    startPath.executeOnExecutor(Asynctask.THREAD_POOL_EXECUTOR);
                 }
             }
         });
