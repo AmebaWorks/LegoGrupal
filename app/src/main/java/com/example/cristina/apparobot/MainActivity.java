@@ -9,6 +9,7 @@ import android.bluetooth.BluetoothSocket;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Debug;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Editable;
@@ -16,19 +17,22 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
+import java.util.ArrayList;
 import java.util.UUID;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements CustomAdapter.CustomListener {
 
     static final int REQUEST_ENABLE_BT = 1;
     static final int TAKE_A_RESULT = 2;
@@ -153,7 +157,6 @@ public class MainActivity extends AppCompatActivity {
                 pause();
             }
         });
-
     }
 
     public void up(){
@@ -258,77 +261,47 @@ public class MainActivity extends AppCompatActivity {
                 main();
             }
         });
-
     }
 
+    public CustomAdapter adapter;
+    private ArrayList<Directions> directions;
+    private ListView listView;
+    private FloatingActionButton fbutton;
     public void path(){
 
         setContentView(R.layout.activity_path);
 
-        direction1 = (TextView) findViewById(R.id.Direction1);
-        direction2 = (TextView) findViewById(R.id.Direction2);
-        direction3 = (TextView) findViewById(R.id.Direction3);
-        direction4 = (TextView) findViewById(R.id.Direction4);
-        seg1 = (EditText) findViewById(R.id.seg1);
-        seg2 = (EditText) findViewById(R.id.seg2);
-        seg3 = (EditText) findViewById(R.id.seg3);
-        seg4 = (EditText) findViewById(R.id.seg4);
+        directions = new ArrayList<Directions>();
+        directions.add(new Directions());
+
+        adapter = new CustomAdapter(this, R.layout.custom_layout, directions);
+        adapter.notifyDataSetChanged();
+        adapter.setCustomListener(MainActivity.this);
+        listView = (ListView) findViewById(R.id.listView);
+        listView.setAdapter(adapter);
+
+        fbutton = (FloatingActionButton) findViewById(R.id.fbutton);
         run = (Button) findViewById(R.id.ButtonRun);
+        run.setEnabled(false);
 
-        direction1.setOnClickListener(new View.OnClickListener() {
+        fbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showDialog(direction1);
+                addDirection();
             }
         });
-
-        direction2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                showDialog(direction2);
-            }
-        });
-
-        direction3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                showDialog(direction3);
-            }
-        });
-
-        direction4.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                showDialog(direction4);
-            }
-        });
-
-
 
         run.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                if(isNull(seg1) || isNull(seg2) || isNull(seg3) || isNull(seg4) || isNull(direction1) || isNull(direction2) || isNull(direction3) || isNull(direction4)
-                        || direction1.getText().toString().equals("CHOICE") || direction2.getText().toString().equals("CHOICE")
-                        || direction3.getText().toString().equals("CHOICE") || direction4.getText().toString().equals("CHOICE"))
-                {
-                    Toast toast1 = Toast.makeText(getApplicationContext(),"Error, a cell has null", Toast.LENGTH_SHORT);
-                    toast1.show();
-                    main();
-                }
-                else
-                {
                     String [][]arrayOfPath;
-                    arrayOfPath = new String[4][2];
-                    arrayOfPath[0][0] = seg1.getText().toString();
-                    arrayOfPath[1][0] = seg2.getText().toString();
-                    arrayOfPath[2][0] = seg3.getText().toString();
-                    arrayOfPath[3][0] = seg4.getText().toString();
-                    arrayOfPath[0][1] = direction1.getText().toString();
-                    arrayOfPath[1][1] = direction2.getText().toString();
-                    arrayOfPath[2][1] = direction3.getText().toString();
-                    arrayOfPath[3][1] = direction4.getText().toString();
+                    arrayOfPath = new String[directions.size()][2];
+                    for(int i = 0; i < directions.size(); i++) {
+                        arrayOfPath[i][1] = directions.get(i).getDirection();
+                        arrayOfPath[i][0] = directions.get(i).getSeconds();
+                    }
+
                     @SuppressLint("StaticFieldLeak")
                     AsynctaskPath startPath = new AsynctaskPath(arrayOfPath, outBT)
                     {
@@ -344,14 +317,13 @@ public class MainActivity extends AppCompatActivity {
                         }
                     };
                     startPath.executeOnExecutor(Asynctask.THREAD_POOL_EXECUTOR);
-                }
             }
         });
     }
     //MOVERLO A CLASE ESTATICA JUNTO CON SHOW DIALOG
-    public boolean isNull(TextView editable)
+    public boolean isNull(String editable)
     {
-        if(editable.getText() != null && !editable.getText().toString().equals(""))
+        if(editable != null && !editable.equals(""))
         {
             return false;
         }
@@ -474,7 +446,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private void showDialog(final TextView txtV){
+    public void showDialoog(final int positionOfTextview){
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setCancelable(true);
         final ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(MainActivity.this, android.R.layout.select_dialog_singlechoice);
@@ -497,21 +469,55 @@ public class MainActivity extends AppCompatActivity {
                 AlertDialog.Builder builderInner = new AlertDialog.Builder(MainActivity.this);
 
                 if(strName.equals("Up")){
-                    txtV.setText("Up");
+                    directions.get(positionOfTextview).setDirection("Up");
                 }
                 if(strName.equals("Down")){
-                    txtV.setText("Down");
+                    directions.get(positionOfTextview).setDirection("Down");
                 }
 
                 if(strName.equals("Right")){
-                    txtV.setText("Right");
+                    directions.get(positionOfTextview).setDirection("Right");
                 }
 
                 if(strName.equals("Left")){
-                    txtV.setText("Left");
+                    directions.get(positionOfTextview).setDirection("Left");
                 }
+
+                adapter.notifyDataSetChanged();
             }
         });
         builder.show();
+    }
+
+    @Override
+    public void onClickListener(int position) {
+        showDialoog(position);
+        checkButton();
+    }
+
+    @Override
+    public void onChangeSeconds(int position, String newSec) {
+        directions.get(position).setSecond(newSec);
+        checkButton();
+    }
+
+    private void addDirection()
+    {
+        directions.add(new Directions());
+        adapter.notifyDataSetChanged();
+    }
+
+    private void checkButton()
+    {
+        for(int i = 0; i < directions.size(); i++)
+        {
+           if( isNull(directions.get(i).getSeconds()) || isNull(directions.get(i).getDirection())
+                    || directions.get(i).getDirection().equals("CHOICE"))
+           {
+               run.setEnabled(false);
+               return;
+           }
+        }
+        run.setEnabled(true);
     }
 }

@@ -25,10 +25,8 @@ public abstract class AsynctaskPath extends AsyncTask<Object,String,Object> {
     @Override
     protected Object doInBackground(Object[] objects)
     {
-        Log.i("Asynctask", "en el doinbackground");
         for(int i = 0; i < path.length ; i++)
         {
-            Log.i("Asynctask", "envio el primer mensaje");
             try {
                 outputStream.write(path[i][1]+"\r\n");
                 outputStream.flush();

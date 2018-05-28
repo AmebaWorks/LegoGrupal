@@ -6,6 +6,23 @@
     android:layout_height="match_parent"
     tools:context="com.example.cristina.apparobot.Path">
 
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fbutton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:src="@android:drawable/ic_input_add" />
+
+    <Button
+        android:id="@+id/buttonBackPark"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="3dp"
+        android:layout_marginTop="2dp"
+        android:text="Back"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -14,173 +31,10 @@
         tools:layout_editor_absoluteX="0dp"
         tools:layout_editor_absoluteY="16dp">
 
-        <LinearLayout
+        <ListView
+            android:id="@+id/listView"
             android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:orientation="horizontal"
-            android:paddingHorizontal="10dp"
-            android:paddingVertical="10dp">
-
-            <TextView
-                android:id="@+id/textD1"
-                android:layout_width="82dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="10"
-                android:paddingHorizontal="10dp"
-                android:text="Direction" />
-
-            <TextView
-                android:id="@+id/Direction1"
-                android:layout_width="80dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="10"
-                android:paddingHorizontal="10dp"
-                android:text="CHOICE"
-                android:textColor="@color/colorAccent" />
-
-            <EditText
-                android:id="@+id/seg1"
-                android:layout_width="75dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.5"
-                android:ems="10"
-                android:inputType="phone"
-                android:paddingHorizontal="10dp" />
-
-            <TextView
-                android:id="@+id/txtsg1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="10"
-                android:paddingHorizontal="10dp"
-                android:text="sg." />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:orientation="horizontal"
-            android:paddingHorizontal="10dp"
-            android:paddingVertical="10dp">
-
-            <TextView
-                android:id="@+id/textD2"
-                android:layout_width="82dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="10"
-                android:paddingHorizontal="10dp"
-                android:text="Direction" />
-
-            <TextView
-                android:id="@+id/Direction2"
-                android:layout_width="80dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="10"
-                android:paddingHorizontal="10dp"
-                android:text="CHOICE"
-                android:textColor="@color/colorAccent" />
-
-            <EditText
-                android:id="@+id/seg2"
-                android:layout_width="75dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.5"
-                android:ems="10"
-                android:inputType="phone"
-                android:paddingHorizontal="10dp" />
-
-            <TextView
-                android:id="@+id/txtsg2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="10"
-                android:paddingHorizontal="10dp"
-                android:text="sg." />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:orientation="horizontal"
-            android:paddingHorizontal="10dp"
-            android:paddingVertical="10dp">
-
-            <TextView
-                android:id="@+id/textD3"
-                android:layout_width="82dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="10"
-                android:paddingHorizontal="10dp"
-                android:text="Direction" />
-
-            <TextView
-                android:id="@+id/Direction3"
-                android:layout_width="80dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="10"
-                android:paddingHorizontal="10dp"
-                android:text="CHOICE"
-                android:textColor="@color/colorAccent" />
-
-            <EditText
-                android:id="@+id/seg3"
-                android:layout_width="75dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.5"
-                android:ems="10"
-                android:inputType="phone"
-                android:paddingHorizontal="10dp" />
-
-            <TextView
-                android:id="@+id/txtsg3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="10"
-                android:paddingHorizontal="10dp"
-                android:text="sg." />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:orientation="horizontal"
-            android:paddingHorizontal="10dp"
-            android:paddingVertical="10dp">
-
-            <TextView
-                android:id="@+id/textD4"
-                android:layout_width="82dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="10"
-                android:paddingHorizontal="10dp"
-                android:text="Direction" />
-
-            <TextView
-                android:id="@+id/Direction4"
-                android:layout_width="80dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="10"
-                android:paddingHorizontal="10dp"
-                android:text="CHOICE"
-                android:textColor="@color/colorAccent" />
-
-            <EditText
-                android:id="@+id/seg4"
-                android:layout_width="75dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.5"
-                android:ems="10"
-                android:inputType="phone"
-                android:paddingHorizontal="10dp" />
-
-            <TextView
-                android:id="@+id/txtsg4"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="10"
-                android:paddingHorizontal="10dp"
-                android:text="sg." />
-        </LinearLayout>
+            android:layout_height="447dp" />
 
         <Button
             android:id="@+id/ButtonRun"
