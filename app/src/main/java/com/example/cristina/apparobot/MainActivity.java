@@ -71,6 +71,7 @@ public class MainActivity extends AppCompatActivity implements CustomAdapter.Cus
     EditText seg3;
     EditText seg4;
     Button run;
+    Button backPath;
     Asynctask at;
 
     @Override
@@ -282,7 +283,9 @@ public class MainActivity extends AppCompatActivity implements CustomAdapter.Cus
 
         fbutton = (FloatingActionButton) findViewById(R.id.fbutton);
         run = (Button) findViewById(R.id.ButtonRun);
+        backPath = (Button) findViewById(R.id.buttonBackPath);
         run.setEnabled(false);
+
 
         fbutton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -317,6 +320,14 @@ public class MainActivity extends AppCompatActivity implements CustomAdapter.Cus
                         }
                     };
                     startPath.executeOnExecutor(Asynctask.THREAD_POOL_EXECUTOR);
+            }
+        });
+
+        backPath.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                pause();
+                main();
             }
         });
     }
