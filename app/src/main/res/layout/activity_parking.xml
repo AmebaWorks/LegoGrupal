@@ -40,67 +40,70 @@
         app:layout_constraintTop_toBottomOf="@+id/imageRobot"
         app:srcCompat="@drawable/distanceback" />
 
-    <Button
-        android:id="@+id/buttonUpPark"
+    <ImageButton
+        android:id="@+id/Park"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
-        android:layout_marginStart="21dp"
-        android:layout_marginTop="15dp"
-        android:text="Up"
+        android:layout_marginBottom="12dp"
+        android:src="@drawable/arriba"
         app:layout_constraintBottom_toTopOf="@+id/buttonDownPark"
-        app:layout_constraintStart_toEndOf="@+id/buttonLeftPark"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imgTrasero" />
 
-    <Button
-        android:id="@+id/buttonDownPark"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="34dp"
-        android:layout_marginStart="21dp"
-        android:text="Down"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/buttonLeftPark" />
-
-    <Button
-        android:id="@+id/buttonRightPark"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="64dp"
-        android:layout_marginEnd="35dp"
-        android:layout_marginStart="25dp"
-        android:text="Right"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/buttonUpPark" />
-
-    <Button
+    <ImageButton
         android:id="@+id/buttonLeftPark"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="64dp"
-        android:layout_marginStart="39dp"
-        android:text="Left"
+        android:layout_marginBottom="56dp"
+        android:layout_marginTop="157dp"
+        android:src="@drawable/izquierda"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/imageRobot"
+        tools:layout_editor_absoluteX="8dp" />
 
-    <Button
+    <ImageButton
+        android:id="@+id/buttonDownPark"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:src="@drawable/abajo"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Park" />
+
+    <ImageButton
+        android:id="@+id/buttonRightPark"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="65dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="147dp"
+        android:src="@drawable/derecha"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageRobot" />
+
+    <ImageButton
         android:id="@+id/buttonBackPark"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="3dp"
-        android:layout_marginTop="2dp"
-        android:text="Back"
+        android:layout_marginLeft="16dp"
+        android:layout_marginStart="16dp"
+        android:src="@drawable/back"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
+    <ImageButton
         android:id="@+id/buttonPausePark"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="6dp"
-        android:layout_marginTop="2dp"
-        android:text="Pause"
+        android:layout_marginEnd="7dp"
+        android:layout_marginRight="7dp"
+        android:src="@drawable/stop"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
 </android.support.constraint.ConstraintLayout>

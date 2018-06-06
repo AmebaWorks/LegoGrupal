@@ -6,15 +6,11 @@
     android:layout_height="match_parent"
     tools:context="com.example.cristina.apparobot.Path">
 
-    <Button
+    <ImageButton
         android:id="@+id/buttonBackPath"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="3dp"
-        android:layout_marginTop="2dp"
-        android:text="Back"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:src="@drawable/back" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -40,15 +36,12 @@
             android:paddingLeft="0dp"
             android:src="@android:drawable/ic_input_add" />
 
-        <Button
+        <ImageButton
             android:id="@+id/ButtonRun"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="0dp"
-            android:layout_weight="0"
-            android:paddingHorizontal="10dp"
-            android:paddingVertical="10dp"
-            android:text="RUN" />
+            android:layout_marginLeft="40dp"
+            android:src="@drawable/gobutton" />
 
     </LinearLayout>
 </android.support.v7.widget.LinearLayoutCompat>

@@ -1,30 +1,27 @@
 package com.example.cristina.apparobot;
 
 import android.annotation.SuppressLint;
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothSocket;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.os.Debug;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.text.Editable;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
+
 import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -42,24 +39,24 @@ public class MainActivity extends AppCompatActivity implements CustomAdapter.Cus
 
     //path
     String path;
-    Button up;
-    Button down;
-    Button right;
-    Button left;
-    Button increaseVolume;
-    Button decreaseVolume;
-    Button exit;
-    Button pause;
+    ImageButton up;
+    ImageButton down;
+    ImageButton right;
+    ImageButton left;
+    ImageButton increaseVolume;
+    ImageButton decreaseVolume;
+    ImageButton exit;
+    ImageButton pause;
 
     //parking
     ImageView delantera;
     ImageView trasera;
-    Button upPark ;
-    Button downPark ;
-    Button rightPark ;
-    Button leftPark ;
-    Button backPark ;
-    Button pausePark ;
+    ImageButton upPark ;
+    ImageButton downPark ;
+    ImageButton rightPark ;
+    ImageButton leftPark ;
+    ImageButton backPark ;
+    ImageButton pausePark ;
 
     //main
     TextView direction1;
@@ -70,8 +67,8 @@ public class MainActivity extends AppCompatActivity implements CustomAdapter.Cus
     EditText seg2;
     EditText seg3;
     EditText seg4;
-    Button run;
-    Button backPath;
+    ImageButton run;
+    ImageButton backPath;
     Asynctask at;
 
     @Override
@@ -85,14 +82,14 @@ public class MainActivity extends AppCompatActivity implements CustomAdapter.Cus
         setContentView(R.layout.activity_main);
 
         //Initialize main buttons
-        up = (Button) findViewById(R.id.buttonUp);
-        down = (Button) findViewById(R.id.buttonDown);
-        right = (Button) findViewById(R.id.buttonRight);
-        left = (Button) findViewById(R.id.buttonLeft);
-        increaseVolume = (Button) findViewById(R.id.buttonMasVol);
-        decreaseVolume = (Button) findViewById(R.id.buttonMenosVol);
-        exit = (Button) findViewById(R.id.buttonExit);
-        pause = (Button) findViewById(R.id.buttonPause);
+        up = findViewById(R.id.buttonUp);
+        down = findViewById(R.id.buttonDown);
+        right = findViewById(R.id.buttonRight);
+        left = findViewById(R.id.buttonLeft);
+        increaseVolume = findViewById(R.id.buttonMasVol);
+        decreaseVolume = findViewById(R.id.buttonMenosVol);
+        exit = findViewById(R.id.buttonExit);
+        pause = findViewById(R.id.buttonPause);
 
         up.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -210,12 +207,12 @@ public class MainActivity extends AppCompatActivity implements CustomAdapter.Cus
 
         delantera = (ImageView) findViewById(R.id.imgDelantero);
         trasera = (ImageView) findViewById(R.id.imgTrasero);
-        upPark = (Button) findViewById(R.id.buttonUpPark);
-        downPark = (Button) findViewById(R.id.buttonDownPark);
-        rightPark = (Button) findViewById(R.id.buttonRightPark);
-        leftPark = (Button) findViewById(R.id.buttonLeftPark);
-        backPark = (Button) findViewById(R.id.buttonBackPark);
-        pausePark = (Button) findViewById(R.id.buttonPausePark);
+        upPark = findViewById(R.id.Park);
+        downPark = findViewById(R.id.buttonDownPark);
+        rightPark = findViewById(R.id.buttonRightPark);
+        leftPark = findViewById(R.id.buttonLeftPark);
+        backPark = findViewById(R.id.buttonBackPark);
+        pausePark = findViewById(R.id.buttonPausePark);
 
         upPark.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -282,8 +279,8 @@ public class MainActivity extends AppCompatActivity implements CustomAdapter.Cus
         listView.setAdapter(adapter);
 
         fbutton = (FloatingActionButton) findViewById(R.id.fbutton);
-        run = (Button) findViewById(R.id.ButtonRun);
-        backPath = (Button) findViewById(R.id.buttonBackPath);
+        run = findViewById(R.id.ButtonRun);
+        backPath = findViewById(R.id.buttonBackPath);
         run.setEnabled(false);
 
 
