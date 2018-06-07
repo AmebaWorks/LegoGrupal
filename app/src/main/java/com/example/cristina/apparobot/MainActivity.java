@@ -59,14 +59,6 @@ public class MainActivity extends AppCompatActivity implements CustomAdapter.Cus
     ImageButton pausePark ;
 
     //main
-    TextView direction1;
-    TextView direction2;
-    TextView direction3;
-    TextView direction4;
-    EditText seg1;
-    EditText seg2;
-    EditText seg3;
-    EditText seg4;
     ImageButton run;
     ImageButton backPath;
     Asynctask at;
@@ -294,7 +286,7 @@ public class MainActivity extends AppCompatActivity implements CustomAdapter.Cus
         run.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                    //Create the matrix with the directions and seconds
                     String [][]arrayOfPath;
                     arrayOfPath = new String[directions.size()][2];
                     for(int i = 0; i < directions.size(); i++) {
@@ -313,7 +305,6 @@ public class MainActivity extends AppCompatActivity implements CustomAdapter.Cus
 
                         @Override
                         protected void onProgressUpdate(String... values) {
-                            //imagen
                         }
                     };
                     startPath.executeOnExecutor(Asynctask.THREAD_POOL_EXECUTOR);
@@ -328,7 +319,7 @@ public class MainActivity extends AppCompatActivity implements CustomAdapter.Cus
             }
         });
     }
-    //MOVERLO A CLASE ESTATICA JUNTO CON SHOW DIALOG
+
     public boolean isNull(String editable)
     {
         if(editable != null && !editable.equals(""))
@@ -340,14 +331,16 @@ public class MainActivity extends AppCompatActivity implements CustomAdapter.Cus
 
     @SuppressLint("StaticFieldLeak")
     public void bluetoothConection(){
+        //Bluetooth
         BluetoothAdapter mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
         if (mBluetoothAdapter != null) {
-            // Device does not support Bluetooth
+            //Check if is enabled
             if (!mBluetoothAdapter.isEnabled()) {
+                //Activate bluetooth
                 Intent enableBtIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
                 startActivityForResult(enableBtIntent, REQUEST_ENABLE_BT);
             }
-
+            //Connect with the robot
             BluetoothDevice mmDevice = mBluetoothAdapter.getRemoteDevice("00:16:53:08:E5:00");
             BluetoothSocket mmSocket = null;
             try {
@@ -449,7 +442,6 @@ public class MainActivity extends AppCompatActivity implements CustomAdapter.Cus
             if(resultCode == RESULT_OK)
             {
                 path = data.getStringExtra("path");
-                Log.i("he recibido ", " esto: "+path);
             }
         }
     }
@@ -474,7 +466,6 @@ public class MainActivity extends AppCompatActivity implements CustomAdapter.Cus
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 String strName = arrayAdapter.getItem(which);
-                AlertDialog.Builder builderInner = new AlertDialog.Builder(MainActivity.this);
 
                 if(strName.equals("Up")){
                     directions.get(positionOfTextview).setDirection("Up");
